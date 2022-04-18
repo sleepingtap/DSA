@@ -35,7 +35,7 @@ public:
                 temp=temp->right;
             }
         }
-        sort(ans.begin(),ans.end());
+        //sort(ans.begin(),ans.end());
         return ans;
     }
 
@@ -57,10 +57,6 @@ public:
             node=curr;
             
         }
-        return res1;
-
-
-        
-        
+        return res1;        
     }
 };
