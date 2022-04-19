@@ -24,45 +24,46 @@ public:
         search(root->right,x,y);
     }
     
-//     vector<int>in(TreeNode* root)
-//     {
-//         vector<int>ans;
-//         TreeNode* node=root;
-//         stack<TreeNode*>s;
-//         while(true)
-//         {
-//             if(node!=NULL)
-//             {
-//                 s.push(node);
-//                 node=node->left;
-//             }
-//             else
-//             {
-//                 if(s.empty())
-//                 {
-//                     break;
-//                 }
-//                 node=s.top();
-//                 s.pop();
-//                 ans.push_back(root->val);
-//                 node=node->right;
-//             }
-//         }
-//         //cout<<ans;
-//         return ans; 
+    vector<int>in(TreeNode* root)
+    {
+        vector<int>ans;
+        TreeNode* node=root;
+        stack<TreeNode*>s;
+        while(true)
+        {
+            if(node!=NULL)
+            {
+                s.push(node);
+                node=node->left;
+            }
+            else
+            {
+                if(s.empty())
+                {
+                    break;
+                }
+                node=s.top();
+                s.pop();
+                ans.push_back(node->val);
+                node=node->right;
+            }
+        }
+        //cout<<ans;
+        return ans; 
         
-//     }
-    void in(TreeNode* root,vector<int> & v1){
-        if(root==NULL)
-            return;
-        in(root->left,v1);
-        v1.push_back(root->val);
-        in(root->right,v1);
     }
+    // void in(TreeNode* root,vector<int> & v1){
+    //     if(root==NULL)
+    //         return;
+    //     in(root->left,v1);
+    //     v1.push_back(root->val);
+    //     in(root->right,v1);
+    // }
     void recoverTree(TreeNode* root) 
     {
         vector<int>v1,v2;
-        in(root,v1);
+        //in(root,v1);
+        v1=in(root);
          int x=0;
          int y=0;
         v2=v1;
