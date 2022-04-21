@@ -119,11 +119,11 @@ class Solution{
     {
         if(left==NULL || right == NULL)
         {
-            return left==right;
-            // {
-            //     return true;
-            // }
-            //return false;
+            if( left==right)
+            {
+                return true;
+            }
+            return false;
         }
         if(left->data!=right->data)
         {
