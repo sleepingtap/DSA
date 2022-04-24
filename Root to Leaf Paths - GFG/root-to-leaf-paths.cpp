@@ -145,7 +145,7 @@ void solve(Node* root,vector<int>& nodes,vector<vector<int>>& leaf)
     solve(root->left,nodes,leaf);
     solve(root->right,nodes,leaf);
     nodes.pop_back();
-    return;
+   // return;
 }
 vector<vector<int>> Paths(Node* root)
 {
