@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void per(int index,vector<int>& nums,vector<vector<int>> &ans)
+    void per(int index,vector<int>nums,vector<vector<int>> &ans)
     {
         if(index==nums.size())
         {
