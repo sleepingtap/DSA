@@ -50,7 +50,7 @@ public:
                 }
                 n--;
             }
-            prev->next=NULL;
+            temp->next=NULL;
         }
         return root;
     }
