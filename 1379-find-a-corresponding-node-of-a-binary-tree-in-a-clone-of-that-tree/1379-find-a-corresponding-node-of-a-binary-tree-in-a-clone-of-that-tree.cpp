@@ -13,7 +13,7 @@ public:
     
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) 
     {
-        if(original==NULL || target==NULL)
+        if(cloned==NULL || target==NULL)
         {
             return NULL;
         }
