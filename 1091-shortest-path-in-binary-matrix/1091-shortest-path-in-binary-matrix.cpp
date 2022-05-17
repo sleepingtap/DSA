@@ -21,9 +21,10 @@ public:
          
          q.push({0, 0});
          grid[0][0] = 1;
-        
-         while (!q.empty() && !grid[n][m]) 
+        cout<<grid[n][m]<<endl;
+         while (!q.empty())// && !grid[n][m]) 
          {
+             cout<<!grid[n][m]<<endl;
             curr = q.front();
             q.pop();
             
