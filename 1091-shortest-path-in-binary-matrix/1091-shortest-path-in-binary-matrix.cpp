@@ -39,7 +39,12 @@ public:
                 }
             }
          }
-         return grid[n][m] ? grid[n][m] : -1;
+         if(grid[n][m])
+         {
+             return grid[n][m];
+         }
+         return -1;
+         //return grid[n][m] ? grid[n][m] : -1;
          
      }
  
