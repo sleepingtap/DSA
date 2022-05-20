@@ -45,9 +45,8 @@ class Solution{
                       return "-1";
                       // break;
                   }
-                  else{
                   return ss.substr(0,i);}
-                }
+                
 
             }
         }
