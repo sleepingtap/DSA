@@ -16,16 +16,7 @@ public:
             }
             mp[a]++;
             j=i+1;
-            // if(j==n-1)
-            // {
-            //     break;
-            // }
-            
             i++;
-        }
-        for(auto i:mp)
-        {
-            cout<<i.first<<" ";
         }
         if(mp.size()>=pow(2,k))
         {
