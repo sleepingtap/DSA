@@ -8,41 +8,28 @@ using namespace std;
  // } Driver Code Ends
 //User function template for C++
 
-// Documenting: for required ouput, we need to make "ans" like in vector of vectors.
-// and we are creating vector v and taking locally as we only need paris of buy & sell.
-// Now, we are getting profit when we sell at a price of more than buying price.Like,
-// (0 3) and (4 6) and that's why we are storing starting and ending index.If vector 
-// v is not empty then we are storing all pairs in ans.
-
-
-
 class Solution{
 public:
     //Function to find the days of buying and selling stock for max profit.
-    
-    
-    vector<vector<int>>stockBuySell(vector<int> A, int n){
+    vector<vector<int> > stockBuySell(vector<int> A, int n)
+    {
         // code here
         vector<vector<int>>ans;
-        
         for(int i=0;i<n-1;i++)
         {
             vector<int>v;
-            
             if(A[i]<A[i+1])
             {
                 v.push_back(i);
                 v.push_back(i+1);
             }
             if(!v.empty())
-           {
-              ans.push_back(v);
-           }
+            {
+                ans.push_back(v);
+            }
         }
-       
         
         return ans;
-        
     }
 };
 
