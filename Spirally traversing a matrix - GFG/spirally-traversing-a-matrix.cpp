@@ -9,44 +9,38 @@ class Solution
     //Function to return a list of integers denoting spiral traversal of matrix.
     vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
     {
-        // code here 
-        //int i,j=0;
-        int left=0,top=0;
-        int right=c-1;
-        int down=r-1;
-        vector<int>v;
-        int count=0;
-        
-        while(left<=right && top<=down)
-        {
-            //int i=top;
-            for(int j=left;j<=right;j++)
-            {
-                v.push_back(matrix[top][j]);
-            }
-            top++;
-            //int j=right;
-            for(int i=top;i<=down;i++)
-            {
-                v.push_back(matrix[i][right]);
-            }
-            right--;
-            //i=down;
-            if(top<=down){
-            for(int j=right;j>=left;j--)
-            {
-                v.push_back(matrix[down][j]);
-            }
-            down--;}
-            //j=left;
-            if(left<=right){
-            for(int i=down;i>=top;i--)
-            {
-                v.push_back(matrix[i][left]);
-            }
-            left++;}
-        }
-        return v;
+       //code here
+       vector<int>v;
+       int left=0;
+       int top=0;
+       int bottom=r-1;
+       int right=c-1;
+       while(left<=right && top<=bottom)
+       {
+           for(int i=left;i<=right;i++)
+           {
+               v.push_back(matrix[top][i]);
+           }
+           top++;
+           for(int i=top;i<=bottom;i++)
+           {
+               v.push_back(matrix[i][right]);
+           }
+           right--;
+           if(top<=bottom)
+           for(int i=right;i>=left;i--)
+           {
+               v.push_back(matrix[bottom][i]);
+           }
+           bottom--;
+           if(left<=right)
+           for(int i=bottom;i>=top;i--)
+           {
+               v.push_back(matrix[i][left]);
+           }
+           left++;
+       }
+       return v;
     }
 };
 
