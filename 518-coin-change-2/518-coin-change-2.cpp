@@ -1,29 +1,34 @@
 class Solution {
 public:
-    int f(int i,int t, vector<int> & coins,vector<vector<int>> & dp)
+    int change(int value, vector<int>& deno) 
     {
-        if(i==0){
-            
-            if(t%coins[0]==0){
-                return 1;
+        int n=deno.size();
+        int dp[n][value+1];
+        for(int i=0;i<=value;i++)
+        {
+            if(i%deno[0]==0)
+            {
+                dp[0][i]=1;
             }
-            else{
-                return 0;
+            else
+            {
+                dp[0][i]=0;
             }
         }
-        
-        if(dp[i][t]!=-1)
-            return dp[i][t];
-        int pick=0;
-        if(coins[i]<=t){
-            pick=f(i,t-coins[i], coins,dp);
-            
+        for(int i=1;i<n;i++)
+        {
+            for(int j=0;j<=value;j++)
+            {
+                if(deno[i]<=j)
+                {
+                    dp[i][j]=dp[i-1][j]+dp[i][j-deno[i]];
+                }
+                else
+                {
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
         }
-        int np=f(i-1,t, coins,dp);
-        return dp[i][t]=np+ pick;
-    }
-    int change(int amount, vector<int>& coins) {
-        vector<vector<int>> dp(coins.size(),vector<int>(amount+1,-1));
-       return  f(coins.size()-1,amount,coins,dp);
+        return dp[n-1][value];  
     }
 };
