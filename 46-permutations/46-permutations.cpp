@@ -10,7 +10,7 @@ public:
         {
             swap(nums[index],nums[i]);
             per(index+1,nums,ans);
-            swap(nums[index],nums[i]);
+         //   swap(nums[index],nums[i]);
         }    
     }
     vector<vector<int>> permute(vector<int>& nums) 
