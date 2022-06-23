@@ -8,76 +8,32 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:	
-// 	bool ispresent(int a[],int n,int x)
-// 	{
-// 	    int l=0,h=n-1;
-// 	    while(l<=h)
-// 	    {
-// 	        int m=l+(h-l)/2;
-// 	        if(a[m]==x)
-// 	        {
-// 	            return true;
-// 	        }
-// 	        else if(a[m]<x)
-// 	        {
-// 	            l=m+1;
-// 	        }
-// 	        else
-// 	        {
-// 	            h=m-1;
-// 	        }
-// 	    }
-// 	    return false;
-// 	}
+	
 	int countTriplet(int arr[], int n)
 	{
 	    // Your code goes here
+	    int ans=0;
 	    unordered_map<int,int>mp;
 	    for(int i=0;i<n;i++)
 	    {
-	        mp[arr[i]]=i;
+	        mp[arr[i]]++;
 	    }
-	    int c=0;
 	    for(int i=0;i<n;i++)
 	    {
-	        int sum=0;
 	        for(int j=i+1;j<n;j++)
 	        {
-	            sum=(arr[i]+arr[j]);
-	            if(mp.find(sum)!=mp.end())
+	            if(mp.find(arr[i]+arr[j])!=mp.end())
 	            {
-	                //if(mp[sum]>j)
-	                    c++;
-	                //mp.erase(sum);
+	                ans++;
+	               // mp[arr[i]+arr[j]]--;
+	               // if(mp[arr[i]+arr[j]]==0)
+	               // {
+	               //     mp.erase(arr[i]+arr[j]);
+	               // }
 	            }
 	        }
 	    }
-	    return c;
-	    
-	    
-	    
-	    
-	    
-	   // int i=0;
-	   // int j=1;
-	   // int sum=0;int c=0;
-	   // sort(arr,arr+n);
-	   // while(i<n && j<n)
-	   // {
-	   //    sum=arr[i]+arr[j];
-	   //    if(ispresent(arr,n,sum)==true)
-	   //    {
-	   //         c++;
-	   //    }
-
-	   //     j++;
-	   //     if(j>=n)
-	   //     {
-	   //         i++;
-	   //         j=i+1;
-	   //     }
-	   // }
-	   // return c;
+	    return ans;
 	}
 };
 
