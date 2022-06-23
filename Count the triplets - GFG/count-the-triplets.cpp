@@ -12,28 +12,33 @@ public:
 	int countTriplet(int arr[], int n)
 	{
 	    // Your code goes here
-	    int ans=0;
-	    unordered_map<int,int>mp;
-	    for(int i=0;i<n;i++)
+	    sort(arr,arr+n);
+	    int c=0;
+	    int i=n-1;
+	    while(i>=0)
 	    {
-	        mp[arr[i]]++;
-	    }
-	    for(int i=0;i<n;i++)
-	    {
-	        for(int j=i+1;j<n;j++)
+	        int l=0;
+	        int r=i;
+	        while(l<r)
 	        {
-	            if(mp.find(arr[i]+arr[j])!=mp.end())
+	            if(arr[l]+arr[r]==arr[i])
 	            {
-	                ans++;
-	               // mp[arr[i]+arr[j]]--;
-	               // if(mp[arr[i]+arr[j]]==0)
-	               // {
-	               //     mp.erase(arr[i]+arr[j]);
-	               // }
+	                c++;
+	                l++;
+	                r--;
+	            }
+	            else if(arr[l]+arr[r]<arr[i])
+	            {
+	                l++;
+	            }
+	            else
+	            {
+	                r--;
 	            }
 	        }
+	        i--;
 	    }
-	    return ans;
+	    return c;
 	}
 };
 
