@@ -14,33 +14,28 @@ class Solution
         vector<int>v;
         int i=0;
         int j=0;
-        long long int sum=arr[i];
-        while(j<n)
+        long long sum=0;
+        while(i<n && j<=n)
         {
             if(sum<s)
             {
-                j++;
                 sum+=arr[j];
-                
+                j++;
             }
             else if(sum==s)
             {
                 v.push_back(i+1);
-                v.push_back(j+1);
+                v.push_back(j);
+                return v;
                 break;
             }
             else
             {
                 sum-=arr[i];
                 i++;
-                
             }
         }
-        if(v.empty())
-        {
-            v.push_back(-1);
-        }
-        return v;
+        return {-1};
     }
 };
 
