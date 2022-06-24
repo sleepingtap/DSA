@@ -9,29 +9,30 @@ class Solution
 {
     public:
     //Function to find length of longest increasing subsequence.
-     int f(int index,int prev, int a[],vector<vector<int>>&dp,int n)
-    {
-        // int n=a.size();
-        if(index==n)
-        {
-            return 0;
-        }
-        if(dp[index][prev+1]!=-1)
-        {
-            return dp[index][prev+1];
-        }
-        int len=0+f(index+1,prev,a,dp,n);
-        if(prev==-1 || a[index]>a[prev])
-        {
-            len=max(len,1+f(index+1,index,a,dp,n));
-        }
-        return dp[index][prev+1]=len;
-    }
     int longestSubsequence(int n, int a[])
     {
        // your code here
-        vector<vector<int>> dp(n, vector<int>(n+1, -1));
-       int ans=f(0,-1,a,dp,n);
+       vector<int>lis(n,1);
+       int i=1;
+       int j=0;
+       while(i<n)
+       {
+           j=0;
+           while(j<i)
+           {
+               if(a[i]>a[j] && lis[i]<=lis[j])
+               {
+                   lis[i]=1+lis[j];
+               }
+               j++;
+           }
+           i++;
+       }
+       int ans=lis[0];
+       for(int i=1;i<n;i++)
+       {
+           ans=max(ans,lis[i]);
+       }
        return ans;
     }
 };
