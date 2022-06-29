@@ -12,9 +12,10 @@ public:
         vector<vector<int>>dp;
         sort(people.begin(),people.end(),comp);
        
-        for(auto i:people)
+        for(int i=0;i<n;i++)
         {
-            dp.insert(dp.begin()+i[1],i);
+            int a=people[i][1];
+            dp.insert(dp.begin()+a,people[i]);
         }
         return dp;
         
