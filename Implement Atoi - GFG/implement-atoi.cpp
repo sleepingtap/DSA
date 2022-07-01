@@ -31,7 +31,22 @@ class Solution{
                 }
             }
         }
-        int a=stoi(str);
+        int a=0;
+        for(int i=0;i<str.size();i++)
+        {
+            if(str[i]=='-' || str[i]=='+')
+            {
+                continue;
+            }
+            else
+            {
+                a=((str[i]-'0')+a*10);
+            }
+        }
+        if(str[0]=='-')
+        {
+            return (-a);
+        }
         return a;
     }
 };
