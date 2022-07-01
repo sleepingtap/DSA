@@ -27,11 +27,11 @@ class Solution
         }
         
         //int a=0;int b=0;int c=0;
-        int a=f(n-x,x,y,z,dp);
-        int b=f(n-y,x,y,z,dp);
-        int c=f(n-z,x,y,z,dp);
+        int a=1+f(n-x,x,y,z,dp);
+        int b=1+f(n-y,x,y,z,dp);
+        int c=1+f(n-z,x,y,z,dp);
       
-        dp[n]=1+max(a,max(b,c));
+        dp[n]=max(a,max(b,c));
         if(dp[n]==0)
         {
             return dp[n]=-1;
