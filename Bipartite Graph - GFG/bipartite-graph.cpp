@@ -5,29 +5,52 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-    bool bibfs(int ind, vector<int>adj[],vector<int>& color)
+    // bool bibfs(int ind, vector<int>adj[],vector<int>& color)
+    // {
+    //     color[ind]=0;
+    //     queue<int>q;
+    //     q.push(ind);
+    //     while(!q.empty())
+    //     {
+    //         int node=q.front();
+    //         q.pop();
+    //         for(auto it:adj[node])
+    //         {
+    //             if(color[it]==-1)
+    //             {
+    //                 color[it]=1+color[node];
+    //                 q.push(it);
+    //             }
+    //             else
+    //             {
+    //                 if(color[it]==color[node])
+    //                 {
+    //                     return false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return true;
+    // }
+    bool bidfs(int ind,vector<int>adj[],vector<int>& color)
     {
-        color[ind]=0;
-        queue<int>q;
-        q.push(ind);
-        while(!q.empty())
+        if(color[ind]==-1)
         {
-            int node=q.front();
-            q.pop();
-            for(auto it:adj[node])
+            color[ind]=1;
+        }
+        for(auto it:adj[ind])
+        {
+            if(color[it]==-1)
             {
-                if(color[it]==-1)
+                color[it]=1-color[ind];
+                if(bidfs(it,adj,color)==false)
                 {
-                    color[it]=1+color[node];
-                    q.push(it);
+                    return false;
                 }
-                else
-                {
-                    if(color[it]==color[node])
-                    {
-                        return false;
-                    }
-                }
+            }
+            else if(color[it]==color[ind])
+            {
+                return false;
             }
         }
         return true;
@@ -40,7 +63,7 @@ public:
 	    {
 	        if(color[i]==-1)
 	        {
-	            if(bibfs(i,adj,color)==false)
+	            if(bidfs(i,adj,color)==false)
 	            {
 	                return false;
 	            }
