@@ -31,10 +31,10 @@ public:
             {
                 return arr[h]+(k-(arr[h]-(h+1)));
             }
-            else
-            {
-                return k;
-            }
+            // else
+            // {
+            //     return k;
+            // }
         // }
         return 0;
     }
