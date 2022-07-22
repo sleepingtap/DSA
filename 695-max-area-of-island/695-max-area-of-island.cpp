@@ -1,52 +1,50 @@
 class Solution {
 public:
-    bool isvalid(int i,int j,vector<vector<int>>& grid,int n,int m)
+    bool isvalid(int i,int j,vector<vector<int>>& grid)
     {
-        if(i>=0 && j>=0 && i<n && j<m && grid[i][j]==1)
+        if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size() || grid[i][j]==0)
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
-    void dfs(int i,int j,vector<vector<int>>& grid,int n,int m, int &area)
+    void f(int i,int j,vector<vector<int>>& grid,int &c)
     {
-        area++;
         grid[i][j]=0;
-        
-        if(isvalid(i+1,j,grid,n,m))
+        c++;
+        if(isvalid(i+1,j,grid))
         {
-            dfs(i+1,j,grid,n,m,area);
+            f(i+1,j,grid,c);
         }
-        if(isvalid(i-1,j,grid,n,m))
+        if(isvalid(i-1,j,grid))
         {
-            dfs(i-1,j,grid,n,m,area);
+            f(i-1,j,grid,c);
         }
-        if(isvalid(i,j+1,grid,n,m))
+        if(isvalid(i,j+1,grid))
         {
-            dfs(i,j+1,grid,n,m,area);
+            f(i,j+1,grid,c);
         }
-        if(isvalid(i,j-1,grid,n,m))
+        if(isvalid(i,j-1,grid))
         {
-            dfs(i,j-1,grid,n,m,area);
+            f(i,j-1,grid,c);
         }
     }
     int maxAreaOfIsland(vector<vector<int>>& grid) 
     {
-        int n=grid.size();
-        int m=grid[0].size();
-        int ans=0;
-        for(int i=0;i<n;i++)
+        
+        int area=0;
+        for(int i=0;i<grid.size();i++)
         {
-            for(int j=0;j<m;j++)
+            for(int j=0;j<grid[0].size();j++)
             {
-                int area=0;
                 if(grid[i][j]==1)
                 {
-                    dfs(i,j,grid,n,m,area);
-                    ans=max(ans,area);
+                    int c=0;
+                    f(i,j,grid,c);
+                    area=max(area,c);
                 }
             }
         }
-        return ans;
+        return area;
     }
 };
