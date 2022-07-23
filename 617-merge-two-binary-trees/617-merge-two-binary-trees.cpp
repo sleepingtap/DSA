@@ -11,40 +11,13 @@
  */
 class Solution {
 public:
-    
-    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) 
+    TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) 
     {
-        
-        int s=0;
-        if(root1==NULL && root2==NULL)
-        {
-            return NULL;
-        }
-        if(root1==NULL && root2!=NULL)
-        {
-            s=root2->val;
-            TreeNode* node=new TreeNode(s);
-            node->left=mergeTrees(root1,root2->left);
-            node->right=mergeTrees(root1,root2->right);
-             return node;
-        }
-        if(root1!=NULL && root2==NULL)
-        {
-            s=root1->val;
-            TreeNode* node=new TreeNode(s);
-            node->left=mergeTrees(root1->left,root2);
-            node->right=mergeTrees(root1->right,root2);
-             return node;
-        }
-        if(root1!=NULL && root2!=NULL)
-        {
-            s=root2->val+root1->val;
-            TreeNode* node=new TreeNode(s);
-            node->left=mergeTrees(root1->left,root2->left);
-            node->right=mergeTrees(root1->right,root2->right);
-             return node;
-        }
-        return NULL;
-       
+        if(!t1) return t2;
+        if(!t2) return t1;
+        t1->val+=t2->val;
+        if(t2->left) t1->left = mergeTrees(t1->left,t2->left);
+        if(t2->right) t1->right = mergeTrees(t1->right,t2->right);
+        return t1;
     }
 };
