@@ -26,18 +26,16 @@ public:
             curr=curr->next;
             
         }
-        
-        
+         
         int a=c-n;
         if(a==0)
             return head->next;
-        //cout<<a<<endl;
+        
         while(a-1!=0)
         {
             temp=temp->next;
             a--;
-        }
-        //delete temp->next;
+        } 
         temp->next=temp->next->next;
         return head;
     }
