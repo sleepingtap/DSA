@@ -25,10 +25,10 @@ public:
         {
             return root1;
         }
-        if(root1==NULL && root2==NULL)
-        {
-            return root;
-        }
+        // if(root1==NULL && root2==NULL)
+        // {
+        //     return root;
+        // }
         
         
         return root;
