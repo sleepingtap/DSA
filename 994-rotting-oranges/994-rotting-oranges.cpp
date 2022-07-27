@@ -47,10 +47,10 @@ public:
                     q.push({i,j-1});
                 }
             }
-            if(!q.empty())
-            {
+            // if(!q.empty())
+            // {
                 c++;
-            }
+            // }
 
         }
         
@@ -64,6 +64,7 @@ public:
                 }
             }
         }
+        if(c)return c-1;
         return c;
         
     }
