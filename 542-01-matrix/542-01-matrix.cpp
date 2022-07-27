@@ -15,13 +15,11 @@ public:
         while(!q.empty()){
             
             int s=q.size();
-            
-            // for(int k=0;k<s;k++){
+            int i=q.front().first;
+            int j=q.front().second;
+            q.pop();
                 
-                auto ele=q.front();
-                q.pop();
-                
-                int i=ele.first,j=ele.second;
+               
                 
                 if(i>0 && mat[i-1][j]==1 && !ans[i-1][j]){
                     ans[i-1][j]=1;
