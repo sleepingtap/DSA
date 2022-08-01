@@ -18,7 +18,7 @@ public:
     
     int rob(vector<int>& nums) 
     {
-        vector<vector<int>>dp(nums.size()+1,vector<int>(50000,-1));
+        vector<vector<int>>dp(nums.size()+1,vector<int>(40000,-1));
         return f(0,0,nums,0,dp);
     }
 };
