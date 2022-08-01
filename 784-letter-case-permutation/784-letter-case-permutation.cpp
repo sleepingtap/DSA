@@ -2,7 +2,6 @@ class Solution {
 public:
     void f(int index,string &s,vector<string>&ans)
     {
-        //ans.push_back(s);
         if(index==s.size())
         {
             ans.push_back(s);
@@ -27,7 +26,7 @@ public:
             
         }
         f(index+1,s,ans);
-
+        
     }
     vector<string> letterCasePermutation(string s) 
     {
