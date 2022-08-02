@@ -13,20 +13,18 @@ public:
     ListNode* middleNode(ListNode* head) 
     {
         ListNode* curr=head;
-        ListNode* temp=head;
+
         int c=0;
         while(curr!=NULL)
         {
             c++;
             curr=curr->next;
         }
-        int a=c/2;
-        while(a!=0)
+        int m=c/2;
+        while(m--)
         {
-            temp=temp->next;
-            a--;
+            head=head->next;
         }
-     //   temp=temp->next;
-        return temp;
+        return head;
     }
 };
