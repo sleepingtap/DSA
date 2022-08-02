@@ -29,13 +29,13 @@ public:
                 list2=list2->next;
             }
         }
-        if(list1==NULL && list2!=NULL)
+        if(list1!=NULL)
+        {
+            t->next=list1;
+        }
+        if(list2!=NULL)
         {
             t->next=list2;
-        }
-        if(list2==NULL && list1!=NULL)
-        {
-             t->next=list1;
         }
         return dummy->next;
     }
