@@ -8,36 +8,49 @@
  */
 class Solution {
 public:
-    // ListNode* reverse(ListNode *head)
-    // {
-    //     ListNode* prev=NULL;
-    //     ListNode*curr=head;
-    //     ListNode*next=NULL;
-    //     while(curr->next!=NULL)
-    //     {
-    //         next=curr->next;
-    //         curr->next=prev;
-    //         prev=curr;
-    //         curr=next;
-    //     }
-    //     return prev;
-    // }
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
     {
-        ListNode* curr=headA;
-        ListNode* curr1=headB;
-       
-        while(curr!=curr1)
+        ListNode* c1=headA;
+        ListNode* c2=headB;
+        int a=0;int b=0;
+        while(c1!=NULL)
         {
-            if(curr1==NULL)
-                curr1=headA;
-            else curr1=curr1->next;
-            
-            if(curr==NULL)
-                curr=headB;
-            else curr=curr->next;
+            a++;
+            c1=c1->next;
         }
-        return curr;
+        while(c2!=NULL)
+        {
+            b++;
+            c2=c2->next;
+        }
+        int d=abs(a-b);
+        //cout<<d;
+        ListNode* t1=headA;
+        ListNode* t2=headB;
+        if(a>b)
+        {
+            while(d--)
+            {
+                t1=t1->next;
+            }
+        }
+        else 
+        {
+            while(d--)
+            {
+                t2=t2->next;
+            }
+        }
+        //cout<<t1->val<<" "<<t2->val;
+        while(t1!=NULL && t2!=NULL)
+        {
+            if(t1==t2)
+            {
+                return t1;
+            }
+            t1=t1->next;
+            t2=t2->next;
+        }
+        return NULL;    
     }
-
 };
