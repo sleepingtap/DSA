@@ -16,10 +16,10 @@ public:
         {
             return root;
         }
-        if(root->left==p && root->right==q)
-        {
-            return root;
-        }
+        // if(root->left==p && root->right==q)
+        // {
+        //     return root;
+        // }
         if(p->val<root->val && q->val>root->val)
         {
             return root;
