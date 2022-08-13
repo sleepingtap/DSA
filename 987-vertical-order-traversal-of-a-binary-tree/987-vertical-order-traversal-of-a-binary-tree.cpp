@@ -13,37 +13,43 @@ class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) 
     {
-        map<int,map<int,multiset<int>>>nodes;
-        queue<pair<TreeNode*,pair<int,int>>>q;
-        q.push({root,{0,0}});
+        vector<vector<int>>ans;
+        map<int,vector<int>>mp;
+        queue<pair<TreeNode*,int>>q;
+        q.push({root,0});
         while(!q.empty())
         {
-            auto p=q.front();
-            q.pop();
-            TreeNode* node=p.first;
-            int x=p.second.first;
-            int y=p.second.second;
-            nodes[x][y].insert(node->val);
-            if(node->left!=NULL)
+            int n=q.size();
+            map<int,multiset<int>>level;
+            
+            while(n--)
             {
-                q.push({node->left,{x-1,y+1}});
+                auto node=q.front().first;
+                int x=q.front().second;
+                level[x].insert(node->val);
+                q.pop();
+                
+                if(node->left)
+                {
+                    q.push({node->left,x-1});
+                }
+                if(node->right)
+                {
+                    q.push({node->right,x+1});
+                }
             }
-            if(node->right!=NULL)
+            for(auto it:level)
             {
-                q.push({node->right,{x+1,y+1}});
+                for(auto i:it.second)
+                {
+                    mp[it.first].push_back(i);
+                }
             }
         }
-        vector<vector<int>>ans;
-        for(auto p:nodes)
+        for(auto it:mp)
         {
-            vector<int>col;
-            for(auto q:p.second)
-            {
-                col.insert(col.end(),q.second.begin(),q.second.end());
-            }
-            ans.push_back(col);
+            ans.push_back(it.second);
         }
         return ans;
-        
     }
 };
