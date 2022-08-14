@@ -11,46 +11,36 @@
  */
 class Solution {
 public:
-    int search(vector<int>& inorder,int start,int end,int curr)
+    int position( vector<int>& inorder,int n,int ele)
     {
-        for(int i=start;i<=end;i++)
+        for(int i=0;i<n;i++)
         {
-            if(inorder[i]==curr)
+            if(inorder[i]==ele)
             {
                 return i;
             }
         }
         return -1;
     }
-    TreeNode* build(vector<int>& preorder,  vector<int>& inorder,int start,int end,int &idx)
+    TreeNode* solve(vector<int>& preorder, vector<int>& inorder,int n,int &pre_ind,int in_st,int in_end)
     {
-        
-        if(start>end)
+        if(pre_ind>=n || in_st>in_end)
         {
             return NULL;
         }
-        int curr=preorder[idx];
-        idx++;
-        TreeNode* node=new TreeNode(curr);
-        
-        if(start==end)
-        {
-            return node;
-        }
-        int pos=search(inorder,start,end,curr);
-        
-        
-        node->left=build(preorder,inorder,start,pos-1,idx);
-        node->right=build(preorder,inorder,pos+1,end,idx);
-        return node;
+        int ele=preorder[pre_ind];
+        pre_ind++;
+        int pos=position(inorder,n,ele);
+        TreeNode * root=new TreeNode(ele);
+        root->left=solve(preorder,inorder,n,pre_ind,in_st,pos-1);
+        root->right=solve(preorder,inorder,n,pre_ind,pos+1,in_end);
+        return root;
     }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) 
     {
-        if(preorder.size()==0|| inorder.size()==0)
-        {
-            return NULL;
-        }
-        int idx=0;
-        return build(preorder,inorder,0,inorder.size()-1,idx);
+        int n=preorder.size();
+        int pre_ind=0;
+        TreeNode* ans=solve(preorder,inorder,n,pre_ind,0,n-1);
+        return ans;
     }
 };
