@@ -42,11 +42,11 @@ public:
             return root;
         }
         int pos=position(post,pre,n,pre_ind);
-        if(pos<=post_end)
-        {
+        // if(pos<=post_end)
+        // {
             root->left=solve(pre,post,n,pre_ind,post_st,pos);
             root->right=solve(pre,post,n,pre_ind,pos+1,post_end-1);
-        }
+        // }
         return root;
     }
     TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) 
