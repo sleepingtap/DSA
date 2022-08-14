@@ -28,25 +28,18 @@ public:
         {
             return NULL;
         }
-        
-        
-        int ele=pre[pre_ind];
-        TreeNode* root=new TreeNode(ele);
+
+        TreeNode* root=new TreeNode(pre[pre_ind]);
         pre_ind++;
-        if(pre_ind==n)
+        if( post_st==post_end)
         {
             return root;
         }
-        if(post_st==post_end)
-        {
-            return root;
-        }
+
         int pos=position(post,pre,n,pre_ind);
-        // if(pos<=post_end)
-        // {
-            root->left=solve(pre,post,n,pre_ind,post_st,pos);
-            root->right=solve(pre,post,n,pre_ind,pos+1,post_end-1);
-        // }
+
+        root->left=solve(pre,post,n,pre_ind,post_st,pos);
+        root->right=solve(pre,post,n,pre_ind,pos+1,post_end-1);
         return root;
     }
     TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) 
