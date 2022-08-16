@@ -15,11 +15,15 @@ public:
     {
         if(root==NULL)
         {
-            return -1;
+            return 0;
         }
         int l=h(root->left);
         int r=h(root->right);
         return 1+max(l,r);
+    }
+    void pre(TreeNode* root,int d)
+    {
+        
     }
     int diameterOfBinaryTree(TreeNode* root) 
     {
@@ -29,10 +33,8 @@ public:
         }
         int l=diameterOfBinaryTree(root->left);
         int r=diameterOfBinaryTree(root->right);
-        //int a=maxd(root)-1;
-        //int b=mind(root)-1;
-        //cout<<a<<" "<<b;
-        int ans=h(root->left)+h(root->right)+2;
+
+        int ans=h(root->left)+h(root->right);
         int res=max(l,max(r,ans));
         return res;
     }
