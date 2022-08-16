@@ -20,34 +20,33 @@ public:
         int ans=0;
         queue<pair<TreeNode*,int>>q;
         q.push({root,0});
+        int s=0,e=0;
         while(!q.empty())
         {
             int n=q.size();
-            int p=q.front().second;
-            int first=0 ,last=0;
-            for(int i=0;i<n;i++)
+            for(int i=1;i<=n;i++)
             {
-                long long int cur_index=q.front().second-p;
-                TreeNode* node=q.front().first;
+                auto a=q.front().first;
+                long long b=q.front().second;
                 q.pop();
-                if(i==0)
+                if(i==1)
                 {
-                    first=cur_index;
+                    s=b;
                 }
-                if(i==n-1)
+                if(i==n)
                 {
-                    last=cur_index;
+                    e=b;
                 }
-                if(node->left!=NULL)
+                if(a->left)
                 {
-                    q.push({node->left,cur_index*2+1});
+                    q.push({a->left,2*b+1});
                 }
-                if(node->right!=NULL)
+                if(a->right)
                 {
-                    q.push({node->right,cur_index*2+2});
+                    q.push({a->right,2*b+2});
                 }
             }
-            ans=max(ans,last-first+1);
+            ans=max(ans,e-s+1);
         }
         return ans;
     }
