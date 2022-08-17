@@ -11,31 +11,32 @@
  */
 class Solution {
 public:
-    int h(TreeNode* root)
+    int h(TreeNode* root,int &ans)
     {
         if(root==NULL)
         {
             return 0;
         }
-        int l=h(root->left);
-        int r=h(root->right);
+        int l=h(root->left,ans);
+        int r=h(root->right,ans);
+        ans=max(ans,l+r);
         return 1+max(l,r);
     }
-    void pre(TreeNode* root,int d)
-    {
-        
-    }
+
     int diameterOfBinaryTree(TreeNode* root) 
     {
         if(root==NULL)
         {
             return 0;
         }
-        int l=diameterOfBinaryTree(root->left);
-        int r=diameterOfBinaryTree(root->right);
+        int ans=0;
+        h(root,ans);
+        return ans;
+//         int l=diameterOfBinaryTree(root->left);
+//         int r=diameterOfBinaryTree(root->right);
 
-        int ans=h(root->left)+h(root->right);
-        int res=max(l,max(r,ans));
-        return res;
+//         int ans=h(root->left)+h(root->right);
+//         int res=max(l,max(r,ans));
+//         return res;
     }
 };
