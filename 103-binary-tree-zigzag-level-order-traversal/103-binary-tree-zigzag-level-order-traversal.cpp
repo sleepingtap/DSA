@@ -19,44 +19,50 @@ public:
             return ans;
         }
         queue<TreeNode*>q;
-        
         q.push(root);
-        int flag=0,index=0;
+        int c=1; 
         while(!q.empty())
         {
             int n=q.size();
-            vector<int>levels(n);
-       
-            
-                for(int i=0;i<n;i++)
+            vector<int>v;
+            if(c%2!=0)
+            {
+                for(int i=1;i<=n;i++)
                 {
-                    TreeNode *temp=q.front();
+                    auto a=q.front();
                     q.pop();
-                    
-                    if(flag==0)
+                    if(a->left)
                     {
-                         index=i;
+                        q.push(a->left);
                     }
-                    else
+                    if(a->right)
                     {
-                        index=n-i-1;
+                        q.push(a->right);
                     }
-                    if(temp->left!=NULL)
-                    {
-                        q.push(temp->left);
-                    }
-                     if(temp->right!=NULL)
-                    {
-                        q.push(temp->right);
-                    }
-                    
-                     levels[index]=(temp->val);
-                
+                    v.push_back(a->val);
                 }
-            
-    
-            flag=!flag;
-            ans.push_back(levels);
+                ans.push_back(v);
+            }
+            else
+            {
+                for(int i=1;i<=n;i++)
+                {
+                    auto a=q.front();
+                    q.pop();
+                    if(a->left)
+                    {
+                        q.push(a->left);
+                    }
+                    if(a->right)
+                    {
+                        q.push(a->right);
+                    }
+                    v.push_back(a->val);
+                }
+                reverse(v.begin(),v.end());
+                ans.push_back(v);
+            }
+            c++;
         }
         return ans;
     }
