@@ -17,16 +17,14 @@ public:
         {
             return NULL;
         }
-        int mid=(s+e)/2;
-        TreeNode* root=new TreeNode(nums[mid]);
-        root->left=f(s,mid-1,nums);
-        root->right=f(mid+1,e,nums);
+        int m=s+(e-s)/2;
+        TreeNode* root=new TreeNode(nums[m]);
+        root->left=f(s,m-1,nums);
+        root->right=f(m+1,e,nums);
         return root;
     }
     TreeNode* sortedArrayToBST(vector<int>& nums) 
     {
-        //int mid=nums.size()/2;
-        
         return f(0,nums.size()-1,nums);
     }
 };
