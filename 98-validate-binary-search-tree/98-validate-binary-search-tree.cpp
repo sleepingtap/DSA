@@ -11,55 +11,22 @@
  */
 class Solution {
 public:
-    bool check(TreeNode* root,TreeNode* prev,TreeNode* prev1)
+    bool check(TreeNode* root,TreeNode* mini,TreeNode* maxi)
     {
         if(root==NULL)
         {
             return true;
         }
-        if(prev!=NULL && prev->val>=root->val)
+        if((mini && root->val <=mini->val) || (maxi && root->val >=maxi->val))
         {
             return false;
         }
-        if(prev1!=NULL && prev1->val<=root->val)
-        {
-            return false;
-        }
-        return check(root->left,prev,root) && check(root->right,root,prev1);
+        return check(root->left,mini,root) && check(root->right,root,maxi);
     }
-
     bool isValidBST(TreeNode* root) 
     {
-        TreeNode* prev=NULL;
-        TreeNode* prev1=NULL;
-        return check(root,prev,prev1);
-
-//         if(root==NULL)
-//         {
-//             return true;
-//         }
-//         if(prev!=NULL && prev->val>=root->val)
-//         {
-//             return false;
-//         }
-//         prev=root;
-//         if(root->left)
-//         {
-//             if(root->left->val>=root->val)
-//             {
-//                 return false;
-//             }
-//         }
-        
-//         if(root->right)
-//         {
-//             if(root->right->val<=root->val)
-//             {
-//                 return false;
-//             }
-//         }
-//         isValidBST(root->left);
-//         isValidBST(root->right);
-//         return true;
+        TreeNode* mini=NULL;
+        TreeNode* maxi=NULL;
+        return check(root,mini,maxi);
     }
 };
