@@ -1,36 +1,62 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int>in(TreeNode* root)
+    int kthSmallest(TreeNode* root, int k) 
     {
-        vector<int>ans;
-        TreeNode*temp=root;
-        stack<TreeNode*>s;
-        while(true)
+        if(root==NULL)
         {
-            if(temp!=NULL)
+            return -1;
+        }
+        int ans=0;int i=0;
+        TreeNode* cur=root;
+        while(cur!=NULL)
+        {
+            if(cur->left==NULL)
             {
-                s.push(temp);
-                temp=temp->left;
+                i++;
+                if(i==k)
+                {
+                    ans=cur->val;
+                    //return ans;
+                }
+                cur=cur->right;
             }
             else
             {
-                if(s.empty())
+                TreeNode* prev=cur->left;
+                while(prev->right && prev->right!=cur)
                 {
-                    break;
+                    prev=prev->right;
                 }
-                temp=s.top();
-                s.pop();
-                ans.push_back(temp->val);
-                temp=temp->right;
+                if(prev->right==NULL)
+                {
+                    prev->right=cur;
+                    cur=cur->left;
+                }
+                else
+                {
+                    prev->right=NULL;
+                    //k--;
+                    i++;
+                    if(i==k)
+                    {
+                        ans=cur->val;
+                       // return ans;
+                    }
+                    cur=cur->right;
+                }
             }
         }
-        //sort(ans.begin(),ans.end());
-        return ans;
-    }
-    int kthSmallest(TreeNode* root, int k) 
-    {
-        vector<int>v;
-        v=in(root);
-        return v[k-1];
+        return ans;       
     }
 };
