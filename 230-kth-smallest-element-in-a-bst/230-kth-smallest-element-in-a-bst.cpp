@@ -23,8 +23,8 @@ public:
         {
             if(cur->left==NULL)
             {
-                i++;
-                if(i==k)
+                k--;
+                if(k==0)
                 {
                     ans=cur->val;
                     //return ans;
@@ -46,9 +46,9 @@ public:
                 else
                 {
                     prev->right=NULL;
-                    //k--;
-                    i++;
-                    if(i==k)
+                    k--;
+                    //i++;
+                    if(k==0)
                     {
                         ans=cur->val;
                        // return ans;
