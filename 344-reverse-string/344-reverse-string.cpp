@@ -1,11 +1,11 @@
 class Solution {
 public:
-    void r(vector<char>&s1,int i,int j)
+    void r(vector<char>&s,int i,int j)
     {
         if(i>=j)
             return;
-        swap(s1[i],s1[j]);
-        r(s1,i+1,j-1);
+        swap(s[i],s[j]);
+        r(s,i+1,j-1);
     }
     void reverseString(vector<char>& s) 
     {
