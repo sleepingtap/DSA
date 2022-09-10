@@ -3,7 +3,7 @@ public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) 
     {
         vector<int>max_slid_window;
-        deque<int>maximums;
+        list<int>maximums;
         int minofwindow=0;
         int maxofwindow=0;
         while(maxofwindow<nums.size())
