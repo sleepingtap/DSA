@@ -1,10 +1,19 @@
 class Solution {
 public:
+    bool isvalid(int i,int j,vector<vector<int>>& grid,int n,int m)
+    {
+        if(i<0 || j<0 || i>=n ||j>=m || grid[i][j]==2 || grid[i][j]==0)
+        {
+            return false;
+        }
+        return true;
+    }
     int orangesRotting(vector<vector<int>>& grid) 
     {
         int n=grid.size();
         int m=grid[0].size();
         queue<pair<int,int>>q;
+        
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
@@ -15,45 +24,55 @@ public:
                 }
             }
         }
-        int c=0;
-   
-        while(!q.empty())
+        if(q.empty())
         {
-          
-            int p=q.size();
-            while(p--)
+            for(int i=0;i<n;i++)
             {
-                int i=q.front().first;
-                int j=q.front().second;
-                q.pop();
-                if(i+1<n && grid[i+1][j]==1)
+                for(int j=0;j<m;j++)
                 {
-                    grid[i+1][j]=2;
-                    q.push({i+1,j});
-                }
-                if(i-1>=0 && grid[i-1][j]==1)
-                {
-                    grid[i-1][j]=2;
-                    q.push({i-1,j});
-                }
-                if(j+1<m && grid[i][j+1]==1)
-                {
-                    grid[i][j+1]=2;
-                    q.push({i,j+1});
-                }
-                if(j-1>=0 && grid[i][j-1]==1)
-                {
-                    grid[i][j-1]=2;
-                    q.push({i,j-1});
+                    if(grid[i][j]==1)
+                    {
+                        return -1;
+                    }
                 }
             }
-            // if(!q.empty())
-            // {
-                c++;
-            // }
-
+            return 0;
         }
-        
+        int c=0;
+        while(!q.empty())
+        {
+            int p=q.size();
+            
+            for(int i=1;i<=p;i++)
+            {
+                int a=q.front().first;
+                int b=q.front().second;
+                q.pop();
+                if(isvalid(a-1,b,grid,n,m))
+                {
+                    q.push({a-1,b});
+                    grid[a-1][b]=2;
+                }
+                if(isvalid(a+1,b,grid,n,m))
+                {
+                    q.push({a+1,b});
+                     grid[a+1][b]=2;
+                }
+                if(isvalid(a,b-1,grid,n,m))
+                {
+                    q.push({a,b-1});
+                     grid[a][b-1]=2;
+                }
+                if(isvalid(a,b+1,grid,n,m))
+                {
+                    q.push({a,b+1});
+                     grid[a][b+1]=2;
+                }
+            }
+            c++;
+            // cout<<c<<" ";
+        }
+
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
@@ -64,8 +83,6 @@ public:
                 }
             }
         }
-        if(c)return c-1;
-        return c;
-        
+        return c-1;
     }
 };
