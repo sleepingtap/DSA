@@ -29,7 +29,7 @@ class Solution
         {
             return true;
         }
-        if((mini && root->data<=mini->data) || (maxi && root->data>=maxi->data))
+        if((mini && mini->data>=root->data) || (maxi && maxi->data<=root->data))
         {
             return false;
         }
@@ -38,6 +38,7 @@ class Solution
     bool isBST(Node* root) 
     {
         // Your code here
+        
         if(root==NULL)
         {
             return true;
