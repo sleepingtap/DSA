@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -107,6 +107,7 @@ int main() {
 }
 
 
+
 // } Driver Code Ends
 
 
@@ -136,41 +137,50 @@ vector<int> findSpiral(Node *root)
     }
     queue<Node*>q;
     q.push(root);
-    int f=0;
+    int c=1;
     while(!q.empty())
     {
         int n=q.size();
-        vector<int>levels;
-        for(int i=0;i<n;i++)
+        if(c%2==0)
         {
-            Node*temp=q.front();
-            q.pop();
-            if(temp->left!=NULL)
+            for(int i=0;i<n;i++)
             {
-                q.push(temp->left);
+                auto node=q.front();
+                q.pop();
+                ans.push_back(node->data);
+                if(node->left)
+                {
+                    q.push(node->left);
+                }
+                if(node->right)
+                {
+                    q.push(node->right);
+                }
             }
-            if(temp->right!=NULL)
-            {
-                q.push(temp->right);
-            }
-            
-            levels.push_back(temp->data);
-        }
-        if(f==0)
-        {
-            for(int i=levels.size()-1;i>=0;i--)
-            {
-                ans.push_back(levels[i]);
-            }
-            f=1;
+            c++;
         }
         else
         {
-            for(int i=0;i<levels.size();i++)
+            vector<int>temp;
+            for(int i=0;i<n;i++)
             {
-                ans.push_back(levels[i]);
+                auto node=q.front();
+                q.pop();
+                temp.push_back(node->data);
+                if(node->left)
+                {
+                    q.push(node->left);
+                }
+                if(node->right)
+                {
+                    q.push(node->right);
+                }
             }
-            f=0;
+            for(int i=temp.size()-1;i>=0;i--)
+            {
+                ans.push_back(temp[i]);
+            }
+            c++;
         }
     }
     return ans;
